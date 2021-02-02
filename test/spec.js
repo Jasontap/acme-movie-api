@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const { syncAndSeed } = require('../db');
 
 const app = require('supertest')(require('../app'));
 
@@ -9,6 +10,7 @@ describe('one test', ()=> {
 });
 
 describe('Routes', ()=> {
+  beforeEach(()=> syncAndSeed());
   describe('GET /', ()=> {
     it('has a working GET / route', async()=> {
       const response = await app.get('/');
